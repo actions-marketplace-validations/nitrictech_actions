@@ -1,17 +1,21 @@
-# Nitric GitHub Actions
+# Nitric CLI - Automated Cloud Deployment
 
-![](https://github.com/nitrictech/actions/workflows/build-test/badge.svg)
-![](https://github.com/nitrictech/actions/workflows/CodeQL/badge.svg)
+![CI](https://github.com/nitrictech/actions/workflows/Continuous%20Integration/badge.svg)
+![CodeQL](https://github.com/nitrictech/actions/workflows/CodeQL/badge.svg)
+[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
 
-Nitric GitHub Actions streamlines workflow automation for Nitric CLI integration
-within GitHub's hosted Actions runners. Nitric, accessible at
-[nitric.io](https://nitric.io), extends its Command Line Interface (CLI) to
-GitHub workflows, empowering the execution of diverse Nitric commands through
-seamlessly integrated actions.
+[Nitric](https://nitric.io) is an
+[open source framework](https://github.com/nitrictech/nitric) for developing
+cloud applications in your language of choice and then easily deploying with
+auto-provisioned infrastructure in AWS, Azure or Google Cloud.
 
-This action is designed to be run on `ubuntu-latest` due to limitations on MacOS
-runners and Windows VMs. It ensures the installation and exposure of a specified
-version of the Nitric CLI on the GitHub Actions runner environment.
+With Nitric’s GitHub Action, you can automate your cloud deployment of your
+application with the right cloud-native infrastructure, so that each commit to
+your GitHub repo triggers a deployment to the stack you’ve configured.
+
+Note: This action is designed to be run on `ubuntu-latest` due to limitations on
+MacOS runners and Windows VMs. It ensures the installation and exposure of a
+specified version of the Nitric CLI on the GitHub Actions runner environment.
 
 ## Usage
 
@@ -50,11 +54,12 @@ This will check out the existing directory and run nitric up.
 
 The actions supports the following inputs:
 
-| Name         | Type   | Description                                                                                                                              | Default  | Required                  |
-| ------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------- |
-| `version`    | String | Nitric CLI version (or `latest`)                                                                                                         | `latest` | false                     |
-| `command`    | String | The command to run as part of the action. Accepted values are up and down. If unspecified, the action will stop after installing Nitric. |          | false                     |
-| `stack-name` | String | The name of the stack that Nitric will be operating on. The stack file should be located in the working directory.                       |          | When command is specified |
+| Name                | Type   | Description                                                                                                                              | Default  | Required                  |
+| ------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------- |
+| `version`           | String | Nitric CLI version (or `latest`)                                                                                                         | `latest` | false                     |
+| `command`           | String | The command to run as part of the action. Accepted values are up and down. If unspecified, the action will stop after installing Nitric. |          | false                     |
+| `stack-name`        | String | The name of the stack that Nitric will be operating on. The stack file should be located in the working directory.                       |          | When command is specified |
+| `working-directory` | String | Working directory containing Nitric stack. Useful for mono-repos.                                                                        |          | false                     |
 
 ## Installation Only
 
@@ -73,7 +78,7 @@ A specific version of the `Nitric` CLI can be installed:
 steps:
   - uses: nitrictech/actions@v1
     with:
-      version: 1.33.3
+      version: 1.34.4
 ```
 
 ## Examples
@@ -113,3 +118,15 @@ This automates the build and tagging process.
 ```bash
 npm run all
 ```
+
+## More info and support
+
+To learn more about Nitric, check out the docs at https://nitric.io/docs,
+including
+[resources for getting started](https://nitric.io/docs/guides/getting-started)
+and a step-by-step guide for setting up
+[continuous deployment with GitHub Actions](https://nitric.io/docs/guides/getting-started/github-actions).
+
+For questions and support, please get in touch through
+[GitHub Discussions](https://github.com/nitrictech/nitric/discussions) or
+[Discord](https://nitric.io/chat).
